@@ -20,6 +20,7 @@
 # ============================================================================
 
 source("src/05_efgartigimod_app.R")
+source("src/06_sensitivity_analysis.R")
 source("src/01_minimal_pbpk.R")
 
 # --- Scenario 1: Kd sweep for FcRn-blocking therapeutics ---

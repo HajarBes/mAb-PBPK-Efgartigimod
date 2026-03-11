@@ -22,6 +22,7 @@
 # ============================================================================
 
 source("src/05_efgartigimod_app.R")
+source("src/06_sensitivity_analysis.R")
 
 # --- Population-specific parameter modifications ---
 

@@ -78,11 +78,6 @@ get_full_pbpk_params <- function(antibody = "typical_igg1") {
     tissues
   )
 
-  # Lymph flows per tissue - distributed by ISF volume (not blood flow)
-  # Total lymph: 0.12 L/h (Shah & Betts 2012)
-  L_total <- 0.12
-  L_tissue <- L_total * V_is / sum(V_is)
-
   # Interstitial volumes
   V_is <- V_tissue * Fi
 
@@ -92,9 +87,15 @@ get_full_pbpk_params <- function(antibody = "typical_igg1") {
   # Endosomal volumes
   V_e <- V_tissue * phys$V_endo
 
+  # Lymph flows per tissue - distributed by ISF volume (not blood flow)
+  # Total lymph: 0.12 L/h (Shah & Betts 2012)
+  L_total <- 0.12
+  L_tissue <- L_total * V_is / sum(V_is)
+
   # FcRn: pinocytosis from plasma (not ISF)
   # CLp is total pinocytosis clearance from plasma
   # Net clearance = CLp * (1 - FR)
+  # Use CLp_minimal (calibrated for pinocytosis-from-plasma paradigm)
 
   list(
     tissues = tissues,
@@ -107,7 +108,7 @@ get_full_pbpk_params <- function(antibody = "typical_igg1") {
     L_tissue = L_tissue,
     sigma_v = sigma_v,
     sigma_l = phys$sigma_l,
-    CLp = ab$CLp,
+    CLp = ab$CLp_minimal,
     FR = ab$FR,
     MW = ab$MW
   )
